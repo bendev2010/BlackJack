@@ -1,4 +1,4 @@
-/*#pragma once
+#pragma once
 #include <string>
 #include <vector>
 #include <iostream>
@@ -11,10 +11,10 @@ private:
     double wager;
 public: 
     BlackJack();
-    std::string str() const;
+    std::string str();
     std::vector<PlayingCard> getHand();
     void setWager(double wgr);
     double getWager();
     void draw(PlayingCard); //takes parameter and pushes it to the hand
     int stand(); //stand function: Ends round, returns total (ace)
-};*/
+};
