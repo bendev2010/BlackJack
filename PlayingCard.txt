@@ -1,0 +1,20 @@
+PlayingCard
+---
+-brand: string
+-rank: int
+-suit: int
+---
++PlayingCard()
++PlayingCard (int, int, string)
++getRank(): int
++getSuit(): int
++getBrand(): string
++getColor(): string
++getFace(): bool
++stringify(): stringify
++operator<(): bool
++operator>(): bool
++operator<=(): bool
++operator>=(): bool
++operator==(): bool
++operator!=(): bool
