@@ -29,7 +29,7 @@ double BlackJack::getWager() {
 void BlackJack::draw(PlayingCard newCard) {
     hand.push_back(newCard);
 }
-/*
+
 int BlackJack::stand() {
     int total;
     for (int i = 0; i < hand.size(); i++) {
@@ -41,4 +41,8 @@ int BlackJack::stand() {
         total += temp;  
     }
     return total;
-}*/
+}
+//give the option to draw or stand
+    //After each draw check for a bust
+    //Then run stand. Must either calculate whether
+    //1 or 11 is better or let user decide.
