@@ -2,9 +2,10 @@
 
 Player::Player() {
     hand;
-    cardTotal;
+    aceTotal;
     autoCardTotal;
     acesInHand = false;
+    aceValue = 1;
 }
 
 std::string Player::str() {
@@ -16,20 +17,27 @@ std::string Player::str() {
     return cards;
 }
 
-void BlackJack::setCardTotal() {
-    wager = wgr;
-}
-
-std::vector<PlayingCard> BlackJack::getHand() {
+std::vector<PlayingCard> Player::getHand() {
     return hand;
 }
-
-double BlackJack::getWager() {
-    return wager;
+bool Player::getAcesInHand() {
+    return acesInHand;
+}
+void Player::draw(PlayingCard newCard) {
+    hand.push_back(newCard);
 }
 
-void BlackJack::draw(PlayingCard newCard) {
-    hand.push_back(newCard);
+int Player::aceCardTotal() {
+    int total;
+    for (int i = 0; i < hand.size(); i++) {
+        int temp = hand[i].getRank();
+        if (hand[i].getRank() = 1) {
+            temp = aceValue;
+        }
+        total += temp;  
+    }
+    aceCardTotal = temp;
+    return total;
 }
 
 int Player::sum() {
@@ -54,7 +62,3 @@ bool Player::cpuAces() {
             }
     }
 }
-//give the option to draw or stand
-    //After each draw check for a bust
-    //Then run stand. Must either calculate whether
-    //1 or 11 is better or let user decide.

@@ -8,18 +8,17 @@
 class Player {
 private:
     std::vector<PlayingCard> hand;
-    int cardTotal;
+    int aceTotal;
     int autoCardTotal;
     bool acesInHand;
+    int aceValue;
 public: 
     Player();
     std::string str();
     std::vector<PlayingCard> getHand();
-    void setCardTotal();
-    int getCardTotal();
-    void draw(PlayingCard); //takes parameter and pushes it to the hand
+    bool getAcesInHand();
+    void draw(PlayingCard); 
+    int aceCardTotal();
     int sum();
     bool cpuAces();
-
-     //stand function: Ends round, returns total (ace)
 };
