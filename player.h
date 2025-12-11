@@ -17,7 +17,9 @@ public:
     std::string str();
     std::vector<PlayingCard> getHand();
     bool getAcesInHand();
-    void draw(PlayingCard); 
+    int getAceValue();
+    void draw(PlayingCard);
+    void setAceValue(int av);
     int aceCardTotal();
     int sum();
     bool cpuAces();

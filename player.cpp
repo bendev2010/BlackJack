@@ -2,15 +2,14 @@
 
 Player::Player() {
     hand;
-    aceTotal;
-    autoCardTotal;
+    cpuTotal;
+    userTotal;
     acesInHand = false;
     aceValue = 1;
 }
 
 std::string Player::str() {
     std::string cards = "Your Hand\n";
-
     for (int i = 0; i < hand.size(); i++) {
         cards += (hand.at(i).stringify() + "\n");
     }
@@ -23,11 +22,17 @@ std::vector<PlayingCard> Player::getHand() {
 bool Player::getAcesInHand() {
     return acesInHand;
 }
+int Player::getAceValue() {
+    return aceValue
+}
 void Player::draw(PlayingCard newCard) {
     hand.push_back(newCard);
 }
+void Player::setAceValue(av) {
+    aceValue = av;
+}
 
-int Player::aceCardTotal() {
+int Player::autoTotal() {
     int total;
     for (int i = 0; i < hand.size(); i++) {
         int temp = hand[i].getRank();
@@ -36,7 +41,7 @@ int Player::aceCardTotal() {
         }
         total += temp;  
     }
-    aceCardTotal = temp;
+    cpuTotal = temp;
     return total;
 }
 
@@ -50,8 +55,7 @@ int Player::sum() {
         }
         total += temp;  
     }
-
-    autoCardTotal = total;
+    userTotal = total;
     return total;
 }
 
