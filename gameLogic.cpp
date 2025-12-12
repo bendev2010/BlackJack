@@ -4,15 +4,15 @@ Game::Game() {
     DeckOfCards deck = DeckOfCards();
 }
 
-void Game::gameStart(p1, p2) {
+void Game::gameStart(Player& p1, Player& p2) {
     deck.shuffle();
     for (int i = 0; i < 2; i++) {
-        user.p1(deck.deal());
-        cpu.p2(deck.deal());
+        p1.draw(deck.deal());
+        p2.draw(deck.deal());
     }
 }
 
-void Game::cpuTurn(cpu) {
+void Game::cpuTurn(Player& cpu) {
     bool cpuPlaying = true;
     int total = cpu.autoTotal();
     srand(time(0));
@@ -29,9 +29,9 @@ void Game::cpuTurn(cpu) {
             } else if (total <= 15) {
                 idx = rand() % 2;
                 if (idx == 0 || 2) {
-                    cpuPlaying = false
+                    cpuPlaying = false;
                 } else {
-                    cpu.draw(deck.deal())
+                    cpu.draw(deck.deal());
                 }
             } else if (total > 15) {
                 cpuPlaying = false;
@@ -58,12 +58,12 @@ void Game::cpuTurn(cpu) {
 
     if (cpu.autoTotal() > 21) {
         std::cout << "Cpu busted. User wins if they do not bust";
-        std::cin.get()
+        std::cin.get();
     }
 }
 
-void Game::userTurn(user) {
-    std::cout << user.str() << "\n" << std::endl;
+void Game::userTurn(Player& user) {
+    std::cout << user.str() << std::endl;
     std::string input1;
     bool userPlay = true;
     while (userPlay)
@@ -78,28 +78,40 @@ void Game::userTurn(user) {
         
         if (input1 == "D") {
             user.draw(deck.deal());
-            std::cout << user.str() << "\n" << std::endl;
-            int sum = autoTotal();
+            int sum = user.autoTotal();
+            std::cout << user.str() << "Your total is " << sum << std::endl;
             if (sum > 21) {
-                std::cout << "You lost (via bust). Good luck next time"
+                std::cout << "You lost (via bust). Good luck next time" << std::endl;
                 userPlay = false;
             }
         } else if (input1 == "S") {
-            int total = user.sum();
-            std::cout << "Your total is " << cardTotal << std::endl;
+            user.cpuAces();
+            if (user.getAcesInHand()) {
+                int aV = 0;
+                std::cout << "Should the ace count as 11 or 1?";
+                std::cin >> aV;
+                while (aV != 11 && aV != 1){
+                    std::cout << "Invalid, please enter '11' or '1'" << std::endl;
+                    std::cin >> aV;
+                }
+                user.setAceValue(aV);
+            }
+            int totale = user.autoTotal();
+            std::cout << "Your total is " << totale << std::endl;
+            userPlay = false;
         } else {
             std::cout << "Sorry, we will fix this in the next update" << std::endl;
         }  
     }
 }
 
-void Game::gameEnd(user, cpu) {
-    if (cpu.getCpuTotal() < user.getUserTotal()) {
+void Game::gameEnd(Player& user, Player& cpu) {
+    if (cpu.autoTotal() < user.sum()) {
         std::cout << "Congratulations, you won!" << std::endl;
-    } else if (cpu.getCpuTotal() < user.getUserTotal()) {
-        std::cout << "You lost. The CPU got: " << cpu.getCpuTotal<< std::endl;
-    } else if (cpu.getCpuTotal() == user.getUserTotal()) {
-        std::cout << "It was a draw. You both got " << cpu.getCpuTotal<< std::endl;
+    } else if (cpu.autoTotal() < user.sum()) {
+        std::cout << "You lost. The CPU got: " << cpu.autoTotal() << std::endl;
+    } else if (cpu.autoTotal() == user.sum()) {
+        std::cout << "It was a draw. You both got " << cpu.autoTotal() << std::endl;
     }
 }
 

@@ -8,10 +8,11 @@
 class Player {
 private:
     std::vector<PlayingCard> hand;
-    int aceTotal;
-    int autoCardTotal;
+    int cpuTotal;
+    int userTotal;
     bool acesInHand;
     int aceValue;
+    int royalValue;
 public: 
     Player();
     std::string str();
@@ -20,7 +21,7 @@ public:
     int getAceValue();
     void draw(PlayingCard);
     void setAceValue(int av);
-    int aceCardTotal();
+    int autoTotal();
     int sum();
-    bool cpuAces();
+    void cpuAces();
 };
