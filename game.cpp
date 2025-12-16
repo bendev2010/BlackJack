@@ -16,15 +16,11 @@ int main() {
     Game Game1 = Game();
     std::cout << "Welcome to Blackjack\n" << std::endl;
 
-    Game1.gameStart(user, cpu); //WORKS!!!!
+    Game1.gameStart(user, cpu); 
+    Game1.cpuTurn(cpu);
     Game1.userTurn(user);
+    Game1.gameEnd(user, cpu);
 
-    //whats currently going on is that autoTotal() is adding wrong
-    //I could investigate how rank works and make sure royals are added properly
-    //Game1.cpuTurn(cpu);
-    //Game1.gameEnd(user, cpu);
-
-    std::cout << "Thank you for playing" << std::endl;
     std::cin.get();
     return 0;
 } 

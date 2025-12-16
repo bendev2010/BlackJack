@@ -22,6 +22,5 @@ public:
     void draw(PlayingCard);
     void setAceValue(int av);
     int autoTotal();
-    int sum();
     void cpuAces();
 };
